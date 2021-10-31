@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "John Doe",
+      "age": 45
+    },
+    {
+      "id": 2,
+      "fullName": "Jane Doe",
+      "age": 25
+    },
+    {
+      "id": 3,
+      "fullName": "Sam Smith",
+      "age": 30
+    }
+  ]
+}

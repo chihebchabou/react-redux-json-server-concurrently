@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "./actions/userActions";
+import "./App.css";
 
 function App() {
+  // const user = useSelector((state) => state.user);
+  // We can use destructuring to extract data from the state
+  const { loading, users, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+
+  if (loading) {
+    return <div>LOADING...</div>;
+  }
+
+  if (error) {
+    return <div style={{ color: "red" }}>{error}</div>;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {users &&
+        users.length > 0 &&
+        users.map((user) => (
+          <div>
+            <h3>{user.fullName}</h3>
+            <small>age: {user.age}</small>
+          </div>
+        ))}
     </div>
   );
 }
