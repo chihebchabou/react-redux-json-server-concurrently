@@ -21,7 +21,7 @@ import { GET_USERS, USERS_ERRORS } from "./types";
 
 export const getUsers = () => async (dispatch) => {
   try {
-    const res = await axios.get("/users");
+    const res = await axios.get("/users"); // we added "proxy": "http://localhost:5000" in package.json
     dispatch({
       type: GET_USERS,
       payload: res.data,
